@@ -1,0 +1,17 @@
+connect:
+  mysql:
+    default:
+      host: "localhost"
+      port: 3303
+      user: "root"
+      psw: ""
+      name: ""
+    
+  redis:
+    default:
+      host: ""
+      port: 6379
+      user: ""
+      pwd: ""
+
+

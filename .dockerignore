@@ -1,0 +1,5 @@
+vendor
+log
+**/node_modules
+# 正式发布需要开启
+# **/*_local.*
