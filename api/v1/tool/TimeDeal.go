@@ -29,6 +29,11 @@ func TimeUnixSecDeal(c *gin.Context) {
 		c.JSON(http.StatusOK, rtn.ReturnJson(http.StatusBadRequest, "", errS))
 		return
 	}
+	errUnix := validateUnix(unixSec)
+	if errUnix != "" {
+		c.JSON(http.StatusOK, rtn.ReturnJson(http.StatusBadRequest, "", errUnix))
+		return
+	}
 	data := buildData(unixSec)
 	c.JSON(http.StatusOK, rtn.ReturnJson(http.StatusOK, data, ""))
 }
@@ -43,4 +48,11 @@ func buildData(unixSec UnixSec) string {
 		data += glue + date.TimeSecToYmd(currUnix)
 	}
 	return data
+}
+
+func validateUnix(unixSec UnixSec) (err string) {
+	if (unixSec.EndUnix - unixSec.StartUnix) > utils.Day*90 {
+		return "时间范围最大只能选30天"
+	}
+	return err
 }
